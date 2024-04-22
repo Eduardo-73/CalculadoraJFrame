@@ -53,5 +53,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
             System.out.println(((JButton) o).getText());
             areaTexto.setText(((JButton) o).getText());
         }
+        
+        
     }
 }
