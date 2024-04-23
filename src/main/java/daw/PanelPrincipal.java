@@ -38,7 +38,7 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         this.setLayout(new BorderLayout());
         this.add(areaTexto, BorderLayout.NORTH);
         this.add(botonera, BorderLayout.SOUTH);
-         for (JButton boton: this.botonera.getgrupoBotones()){
+        for (JButton boton : this.botonera.getgrupoBotones()) {
             boton.addActionListener(this);
         }
 
@@ -48,12 +48,19 @@ public class PanelPrincipal extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         // Se obtiene el objeto que desencadena el evento
         Object o = ae.getSource();
+        String valor = "", simbolo;
+        int num;
         // Si es un botón
         if (o instanceof JButton) {
             System.out.println(((JButton) o).getText());
-            areaTexto.setText(((JButton) o).getText());
+            valor = ((JButton) o).getText();
+            areaTexto.append(valor);
+            String[] split = valor.split("\\s*[+\\-*/]\\s*");
+            int num1 = Integer.parseInt(split[0]);
+            System.out.println(num1);
+            int num2 = Integer.parseInt(split[2]);
+            System.out.println(num2);
         }
-        
-        
+
     }
 }
