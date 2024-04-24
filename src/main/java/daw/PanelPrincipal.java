@@ -50,46 +50,39 @@ public class PanelPrincipal extends JPanel implements ActionListener {
         String valor = boton.getText();
         areaTexto.append(valor);
         valor = areaTexto.getText();
+        int res = 0, num1 = 0, num2 = 0;
+        String simbolo = "";
         System.out.println(valor);
+        if (valor.contains("C")) {
+            valor = "";
+            areaTexto.setText(valor);
+            res = 0;
+            num1 = 0;
+            num2 = 0;
+        }
         if (valor.contains("=")) {
             String[] s = valor.split("\\s*[+\\-*/=]\\s*");
-            String simbolo = valor.replaceAll("[\\d\\s=]", "");
+            simbolo = valor.replaceAll("[\\d\\s=]", "");
             System.out.println(simbolo);
-            int num1 = Integer.parseInt(s[0]);
+            num1 = Integer.parseInt(s[0]);
             System.out.println(num1);
-            int num2 = Integer.parseInt(s[1]);
+            num2 = Integer.parseInt(s[1]);
             System.out.println(num2);
-            int res = 0;
             switch (simbolo) {
                 case "+" -> {
                     res = num1 + num2;
-                    areaTexto.setText(valor + res);
-                    if (valor.contains("C")) {
-                        valor = "";
-                    }
                 }
                 case "-" -> {
                     res = num1 - num2;
-                    areaTexto.setText(valor + res);
-                    if (simbolo.contains("C")) {
-                        valor = "";
-                    }
                 }
                 case "*" -> {
                     res = num1 * num2;
-                    areaTexto.setText(valor + res);
-                    if (valor.contains("C")) {
-                        valor = "";
-                    }
                 }
                 case "/" -> {
                     res = num1 / num2;
-                    areaTexto.setText(valor + res);
-                    if (valor.contains("C")) {
-                        valor = "";
-                    }
                 }
             }
+            areaTexto.setText(valor + res);
         }
     }
 }
