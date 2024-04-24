@@ -46,21 +46,50 @@ public class PanelPrincipal extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent ae) {
-        // Se obtiene el objeto que desencadena el evento
-        Object o = ae.getSource();
-        String valor = "", simbolo;
-        int num;
-        // Si es un botón
-        if (o instanceof JButton) {
-            System.out.println(((JButton) o).getText());
-            valor = ((JButton) o).getText();
-            areaTexto.append(valor);
-            String[] split = valor.split("\\s*[+\\-*/]\\s*");
-            int num1 = Integer.parseInt(split[0]);
+        JButton boton = (JButton) ae.getSource();
+        String valor = boton.getText();
+        areaTexto.append(valor);
+        valor = areaTexto.getText();
+        System.out.println(valor);
+        if (valor.contains("=")) {
+            String[] s = valor.split("\\s*[+\\-*/=]\\s*");
+            String simbolo = valor.replaceAll("[\\d\\s=]", "");
+            System.out.println(simbolo);
+            int num1 = Integer.parseInt(s[0]);
             System.out.println(num1);
-            int num2 = Integer.parseInt(split[2]);
+            int num2 = Integer.parseInt(s[1]);
             System.out.println(num2);
+            int res = 0;
+            switch (simbolo) {
+                case "+" -> {
+                    res = num1 + num2;
+                    areaTexto.setText(valor + res);
+                    if (valor.contains("C")) {
+                        valor = "";
+                    }
+                }
+                case "-" -> {
+                    res = num1 - num2;
+                    areaTexto.setText(valor + res);
+                    if (simbolo.contains("C")) {
+                        valor = "";
+                    }
+                }
+                case "*" -> {
+                    res = num1 * num2;
+                    areaTexto.setText(valor + res);
+                    if (valor.contains("C")) {
+                        valor = "";
+                    }
+                }
+                case "/" -> {
+                    res = num1 / num2;
+                    areaTexto.setText(valor + res);
+                    if (valor.contains("C")) {
+                        valor = "";
+                    }
+                }
+            }
         }
-
     }
 }
